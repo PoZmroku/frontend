@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="form" fxLayout="row">
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Введите почту</mat-label>
+                <input matInput type="email" [(ngModel)]="form.email">
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Введите ваше имя</mat-label>
+                <input matInput type="fullNme" [(ngModel)]="form.fullName">
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Введите пароль</mat-label>
+                <input matInput type="password" [(ngModel)]="form.password">
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <button (click)="register()" mat-raised-button>Зарегистрироваться</button>
+        </div>
+    
+    </div>
+</div>
+<ng-container *ngIf="register$ | async"></ng-container>

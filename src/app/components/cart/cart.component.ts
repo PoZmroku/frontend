@@ -1,17 +1,28 @@
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
-import { Observable, tap, exhaustMap, delay } from 'rxjs';
+import { OnInit } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-cart',
+  styleUrls: ['./cart.component.scss'],
+  template: `
+    <ng-container *ngIf="cart$ | async as cart else emptyCart">
+      <div *ngFor="let item of cart.items">
+        <app-cart-item [cartItem]="item"></app-cart-item>
+      </div>
+    </ng-container>
+    <ng-template #emptyCart>THE CART IS EMPTY BITCH</ng-template>
+  `
 })
-export class LoginComponent {
+export class CartComponent implements OnInit {
 
-  obs$: Observable<any>;
-
-  constructor(private _cartService: CartService) {}
-
+  cart$: Observable<any>;
   
+  constructor(private _cartService: CartService) {}
+  
+  ngOnInit() {
+
+    this.cart$ = this._cartService.cartItems('641748e7b4093cdee2c76d6c');
+  }
 }

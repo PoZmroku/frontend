@@ -1,7 +1,21 @@
 <div class="container">
-    <input type="text" placeholder="Your email" [(ngModel)]="form.email">
-    <input type="password" placeholder="Enter your password" [(ngModel)]="form.password">
-
-    <button (click)="login()">Login</button>
+    <div class="form" fxLayout="row">
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Your email</mat-label>
+                <input matInput type="email" [(ngModel)]="form.email">
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Your password</mat-label>
+                <input matInput type="password" [(ngModel)]="form.password">
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <button (click)="login()" mat-raised-button>Login</button>
+        </div>
+    
+    </div>
 </div>
 <ng-container *ngIf="obs$ | async"></ng-container>

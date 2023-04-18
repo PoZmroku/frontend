@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { IProduct } from "../interfaces/IProduct";
+import { IProduct } from '../interfaces';
 import { Observable } from 'rxjs';
 
 
@@ -17,16 +17,16 @@ export class ProductService {
         return this._http.get<IProduct[]>(`${this._apiUrl}/products`);
     }
 
-    getProduct(product: IProduct): Observable<IProduct[]> {
-        return this._http.get<IProduct[]>(`${this._apiUrl}/product`);
+    getProduct(productId: string): Observable<IProduct> {
+        return this._http.get<IProduct>(`${this._apiUrl}/product/${productId}`);
     }
 
-    create(product: IProduct): Observable<IProduct> {
-        return this._http.post<IProduct>(`${this._apiUrl}/products`, product);
+    create(product: IProduct): Observable<void> {
+        return this._http.post<void>(`${this._apiUrl}/products`, product);
     }
 
-    deleteProduct(product: IProduct): Observable<void> {
-        return this._http.delete<void>(`${this._apiUrl}/product/${product._id}`);
+    deleteProduct(productId: string): Observable<void> {
+        return this._http.delete<void>(`${this._apiUrl}/product/${productId}`);
     }
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IOrder } from '../interfaces/IOrder';
+import { IOrder } from '../interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class CartService {
     private _http: HttpClient
   ) { }
 
-    orders(order: IOrder): Observable<IOrder[]> {
-        return this._http.get<IOrder[]>(`${this._apiUrl}/orders`);
+    orders(userId: string): Observable<IOrder[]> {
+        return this._http.get<IOrder[]>(`${this._apiUrl}/orders/${userId}`);
     }
 
     add(order: IOrder): Observable<IOrder> {

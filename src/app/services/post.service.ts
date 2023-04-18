@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { IPost } from '../interfaces/IPost';
+import { IPost } from '../interfaces';
 import { Observable } from 'rxjs';
 
 
@@ -13,11 +13,11 @@ export class ProductService {
     constructor(private _http: HttpClient) {
     }
 
-    create(post: IPost): Observable<IPost> {
-        return this._http.post<IPost>(`${this._apiUrl}/posts`, post);
+    create(post: IPost): Observable<void> {
+        return this._http.post<void>(`${this._apiUrl}/posts`, post);
     }
 
-    getAll(post: IPost): Observable<IPost[]> {
+    getAll(): Observable<IPost[]> {
         return this._http.get<IPost[]>(`${this._apiUrl}/posts`);
     }
 
@@ -25,16 +25,11 @@ export class ProductService {
         return this._http.delete<void>(`${this._apiUrl}/posts/${post._id}`);
     }
 
-    getOne(post: IPost): Observable<IPost> {
-        return this._http.get<IPost>(`${this._apiUrl}/posts/${post._id}`);
+    getOne(postId: string): Observable<IPost> {
+        return this._http.get<IPost>(`${this._apiUrl}/posts/${postId}`);
     }
 
-    update(post: IPost): Observable<IPost> {
-        return this._http.patch<IPost>(`${this._apiUrl}/posts/${post._id}`, post);
+    update(post: Partial<IPost>): Observable<void> {
+        return this._http.patch<void>(`${this._apiUrl}/posts/${post._id}`, post);
     }
-
-    
-
-
-
 }

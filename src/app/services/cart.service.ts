@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ICartItem } from '../interfaces/ICartItem';
+import { ICart, ICartItem } from '../interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,8 +17,8 @@ export class CartService {
     return this._http.post<ICartItem>(`${this._apiUrl}/cart/add`, cart);
   }
 
-  cartItems(cart: ICartItem): Observable<ICartItem[]> {
-    return this._http.get<ICartItem[]>(`${this._apiUrl}/cart`);
+  cartItems(userId: string): Observable<ICart> {
+    return this._http.get<ICart>(`${this._apiUrl}/cart/${userId}`);
   }
 
   cartDeleteItems(cart: ICartItem): Observable<void> {
