@@ -23,6 +23,6 @@ export class CartComponent implements OnInit {
   
   ngOnInit() {
 
-    this.cart$ = this._cartService.cartItems('641748e7b4093cdee2c76d6c');
+    this.cart$ = this._cartService.cartItems('');
   }
 }

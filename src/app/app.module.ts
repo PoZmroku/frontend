@@ -22,7 +22,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { StoreComponent } from './components/store/store.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { LogoutComponent } from './components/logout/logout.component';
+import { RouterModule } from '@angular/router';
+import { PostComponent } from './components/post/post.component';
+import { PostsComponent } from './components/posts/posts.component';
 
 const COMPONENTS = [
   AppComponent,
@@ -37,7 +43,9 @@ const COMPONENTS = [
 
 @NgModule({
   declarations: [
-    ...COMPONENTS
+    ...COMPONENTS,
+    PostComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +59,12 @@ const COMPONENTS = [
     FlexLayoutModule,
     MatCardModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    BrowserModule,
+    MatSidenavModule,
+    RouterModule
   ],
   providers: [
     UserService,

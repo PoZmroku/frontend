@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import { IProduct } from '../../interfaces';
 import { Input } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { Subscription, Observable, map } from 'rxjs';
+import { ProductService } from 'src/app/services';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product',
   styleUrls: ['./product.component.scss'],
   template: `
-    <ng-container *ngIf="product else productNotFound">
+    <ng-container *ngIf="product$ | async as product else productNotFound">
       <mat-card>
         <div class="product">
           <mat-form-field appearance="outline">
@@ -26,15 +29,23 @@ import { ChangeDetectionStrategy } from '@angular/core';
       </mat-card>
     </ng-container>
 
-    <ng-template #productNotFound><mat-card>
+    <ng-template #productNotFound>
+      <mat-card>
         <div class="product">
           PRODUCT NOT FOUND
         </div>
-      </mat-card></ng-template>
+      </mat-card>
+    </ng-template>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent {
 
-  @Input() product: IProduct;
+  product$: Observable<IProduct> = this._activatedRoute.data.pipe(map(({product: {product}}) => product));
+  productSubscription: Subscription;
+  
+  constructor(
+    private _productService: ProductService,
+    private _activatedRoute: ActivatedRoute
+  ) {}
 }

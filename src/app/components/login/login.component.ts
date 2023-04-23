@@ -35,4 +35,9 @@ export class LoginComponent {
       tap(() => this._router.navigate(['/store']))
     );
   }
+
+  registerNav() {
+    this._router.navigate(['/auth/register'])
+  }
+
 }

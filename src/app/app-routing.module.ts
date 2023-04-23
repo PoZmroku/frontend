@@ -5,6 +5,11 @@ import { canActivateCartGuard, canActivateLoginGuard, canActivateLogoutGuard } f
 import { StoreComponent } from './components/store/store.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductResolver } from './services/product.resolver';
+import { RegisterComponent } from './components/register/register.component';
+import { PostComponent } from './components/post/post.component';
+import { PostsComponent } from './components/posts/posts.component';
 
 const routes: Routes = [
   {
@@ -27,9 +32,24 @@ const routes: Routes = [
     canActivate: [canActivateLoginGuard]
   },
   {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [canActivateLoginGuard]
+  },
+  {
     path: 'logout',
     component: LogoutComponent,
     canActivate: [canActivateLogoutGuard]
+  },
+  {
+    path: 'product/:id',
+    pathMatch: 'full',
+    component: ProductComponent,
+    resolve: {product: ProductResolver}
+  },
+  {
+    path: 'posts',
+    component: PostsComponent
   }
 ];
 

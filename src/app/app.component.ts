@@ -9,32 +9,49 @@ import { share } from 'rxjs';
   selector: 'app-root',
   styleUrls: ['./app.component.scss'],
   template: `
+
+<mat-drawer-container class="example-container" autosize >
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center" [routerLink]="'/posts'">Новости</button>
+    <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center">Кнопка на страницу</button>
+    <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center">Кнопка на страницу</button>
+  </mat-drawer>
+  
+  
   <mat-toolbar>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Онколит</span>
+    <span><a class="homepage" [routerLink]="'/store'">Онколит</a></span>
     <span class="spacer"></span>
-    <button mat-button [routerLink]="'/login'" *ngIf="!(isLoggedIn$ | async)">
+    <button class="button" mat-button [routerLink]="'/login'" *ngIf="!(isLoggedIn$ | async)">
       <mat-icon>login</mat-icon>
-      Login
+      Войти
     </button>
-    <button mat-button [routerLink]="'/logout'" *ngIf="isLoggedIn$ | async">
+    <button class="button" mat-button [routerLink]="'/logout'" *ngIf="isLoggedIn$ | async">
       <mat-icon>logout</mat-icon>
-      Logout
+      Выйти
     </button>
-  </mat-toolbar>
-  <div class="container">
-    <router-outlet></router-outlet>
+    <div class="demo-section">
+      <button class="button" mat-raised-button [routerLink]="'/cart'"
+      *ngIf="isLoggedIn$ | async"
+      matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+      Корзина
+    </button>
   </div>
-  `,
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+</mat-drawer-container>
+`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'frontend';
-
+  
   isLoggedIn$ = this._state.isLoggedIn$.pipe(share());
-
+  
   constructor(private _state: UserStateService) {
   }
 }

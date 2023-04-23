@@ -27,6 +27,4 @@ export class RegisterComponent {
       tap(result => localStorage.setItem('user', JSON.stringify(result)))
     );
   }
-
-
 }
