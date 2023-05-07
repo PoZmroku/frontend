@@ -5,6 +5,11 @@ import { Observable, tap } from 'rxjs';
 import { UserStateService } from 'src/app/services/state.service';
 import { Router } from '@angular/router';
 import { ChangeDetectionStrategy } from '@angular/core';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +23,14 @@ export class LoginComponent {
 
   obs$: Observable<any>;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
   constructor(
     private _userService: UserService,
     private _state: UserStateService,
-    private _router: Router
+    private _router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   login() {
@@ -38,6 +47,23 @@ export class LoginComponent {
 
   registerNav() {
     this._router.navigate(['/auth/register'])
+  }
+
+  openSnackBar() {
+    if(this.obs$) {
+      this._snackBar.open('Вы успешно авторизировались', '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 2 * 1000
+    });
+    } else {
+
+      this._snackBar.open('Неверный логин или пароль', '', {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        duration: 2 * 1000
+      });
+    }
   }
 
 }

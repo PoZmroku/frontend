@@ -16,6 +16,8 @@ export class RegisterComponent {
 
   register$: Observable<any>;
 
+  checkbox = false;
+
   constructor(private _registerService: RegisterService) {}
 
   register() {
@@ -27,4 +29,5 @@ export class RegisterComponent {
       tap(result => localStorage.setItem('user', JSON.stringify(result)))
     );
   }
+
 }

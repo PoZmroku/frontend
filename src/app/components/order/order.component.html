@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="form" fxLayout="column" fxLayoutAlign="center center">
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Улица</mat-label>
+                <input matInput type="input" [(ngModel)]="form.shippingAddress.street" required>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Город</mat-label>
+                <input matInput type="input" [(ngModel)]="form.shippingAddress.city" required>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Область</mat-label>
+                <input matInput type="input" [(ngModel)]="form.shippingAddress.state" required>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Страна</mat-label>
+                <input matInput type="input" [(ngModel)]="form.shippingAddress.country" required>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+        </div>
+        <div fxFlex>
+            <button (click)="order()" mat-raised-button>Сделать заказ</button>
+        </div>
+        
+    
+    </div>
+</div>
+<ng-container *ngIf="order$ | async"></ng-container>

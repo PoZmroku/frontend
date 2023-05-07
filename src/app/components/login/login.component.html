@@ -15,9 +15,9 @@
             </mat-form-field>
         </div>
         <div fxFlex fxLayout="column">
-            <button (click)="login()" mat-raised-button>Войти</button>
+            <button (click)="openSnackBar()" (click)="login()" mat-raised-button>Войти</button>
             <button class="regbutton" mat-raised-button color="accent" 
-            (click)="registerNav()">
+            [routerLink]="['..', 'register']">
             Зарегистрироваться
             </button>
         </div>

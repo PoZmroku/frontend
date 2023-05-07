@@ -14,3 +14,5 @@ export type ILoginResult = IUser & IToken;
 export type IUserState = ILoginResult;
 
 export type IUserCredentials = Pick<IUser, 'email'> & { password: string };
+
+export type IUserRole = Pick<IUser, 'role'>

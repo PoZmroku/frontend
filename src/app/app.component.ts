@@ -10,11 +10,11 @@ import { share } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   template: `
 
-<mat-drawer-container class="example-container" autosize >
+<mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center" [routerLink]="'/posts'">Новости</button>
-    <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center">Кнопка на страницу</button>
-    <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center">Кнопка на страницу</button>
+    <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center" *ngIf="isLoggedIn$ | async" [routerLink]="['/orders']">Мои заказы</button>
+    <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center" [routerLink]="['/store']">Каталог</button>
   </mat-drawer>
   
   
@@ -33,9 +33,9 @@ import { share } from 'rxjs';
       Выйти
     </button>
     <div class="demo-section">
-      <button class="button" mat-raised-button [routerLink]="'/cart'"
+      <button class="button" mat-raised-button [routerLink]="['..', 'cart']"
       *ngIf="isLoggedIn$ | async"
-      matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+      matBadge="1" matBadgePosition="before" matBadgeColor="accent">
       Корзина
     </button>
   </div>

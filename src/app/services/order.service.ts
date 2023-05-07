@@ -6,15 +6,15 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+export class OrderService {
   private _apiUrl = `http://localhost:4444`;
 
   constructor(
     private _http: HttpClient
   ) { }
 
-    orders(userId: string): Observable<IOrder[]> {
-        return this._http.get<IOrder[]>(`${this._apiUrl}/orders/${userId}`);
+    orders(): Observable<IOrder[]> {
+        return this._http.get<IOrder[]>(`${this._apiUrl}/orders`);
     }
 
     add(order: IOrder): Observable<IOrder> {

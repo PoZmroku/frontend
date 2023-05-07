@@ -1,0 +1,17 @@
+.container {
+    margin: 0 auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 500px;
+}
+
+.example-card {
+    margin-top: 50px;
+    background-color: rgba(0, 0, 0, 0.014);
+}
+
+.image {
+    max-width: 150px;
+}

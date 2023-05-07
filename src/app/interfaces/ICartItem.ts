@@ -1,7 +1,7 @@
 
 export interface ICartItem {
     name: string;
-    productId: string;
+    _id: string;
     quantity: number;
 }
 

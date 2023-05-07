@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IUserState } from '../interfaces';
+import { IUserRole, IUserState } from '../interfaces';
 import { BehaviorSubject, Observable, switchMap, map } from 'rxjs';
 import { UserService } from '../services';
 
@@ -17,6 +17,8 @@ export class UserStateService {
   user$: Observable<IUserState | null> = this.#userState$.asObservable();
   isLoggedIn$: Observable<boolean> = this._userService.isTokenExpired()
     .pipe(map(isExpired => !isExpired));
+  
+  userRole$: Observable<IUserRole | null> = this.#userState$.asObservable();
 
   setState(state: IUserState): void {
     localStorage.setItem('user', JSON.stringify(state));
@@ -27,4 +29,5 @@ export class UserStateService {
     localStorage.removeItem('user');
     this.#userState$.next(null);
   }
+
 }

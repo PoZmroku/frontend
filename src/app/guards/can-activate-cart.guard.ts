@@ -4,21 +4,21 @@ import { UserService } from '../services';
 
 export const canActivateCartGuard = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     const userEntry = localStorage.getItem('user');
-    // const userService = inject(UserService);
+    const userService = inject(UserService);
 
-    // //TODO: check if user's token is alive & valid
+    //TODO: check if user's token is alive & valid
 
-    // console.log(userService);
+    console.log(userService);
 
-    // if (!userEntry) {
-    //     return false;
-    // }
+    if (!userEntry) {
+        return false;
+    }
 
-    // const user = JSON.parse(userEntry);
+    const user = JSON.parse(userEntry);
 
-    // if (!user.token) {
-    //     return false;
-    // }
+    if (!user.token) {
+        return false;
+    }
     
     return true;
 }

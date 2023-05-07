@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserService } from './services';
+import { CartStateService, UserService } from './services';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
@@ -29,6 +29,10 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { RouterModule } from '@angular/router';
 import { PostComponent } from './components/post/post.component';
 import { PostsComponent } from './components/posts/posts.component';
+import { OrderComponent } from './components/order/order.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { AddpostComponent } from './components/addpost/addpost.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 const COMPONENTS = [
   AppComponent,
@@ -38,14 +42,17 @@ const COMPONENTS = [
   CartItemComponent,
   RegisterComponent,
   StoreComponent,
-  LogoutComponent
+  LogoutComponent,
+  PostComponent,
+  PostsComponent,
+  OrderComponent,
+  OrdersComponent,
+  AddpostComponent,
 ];
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    PostComponent,
-    PostsComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +71,8 @@ const COMPONENTS = [
     MatSnackBarModule,
     BrowserModule,
     MatSidenavModule,
-    RouterModule
+    RouterModule,
+    NgxEditorModule
   ],
   providers: [
     UserService,
@@ -72,7 +80,8 @@ const COMPONENTS = [
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    CartStateService
   ],
   bootstrap: [AppComponent]
 })

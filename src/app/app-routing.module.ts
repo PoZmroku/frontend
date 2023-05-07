@@ -10,6 +10,11 @@ import { ProductResolver } from './services/product.resolver';
 import { RegisterComponent } from './components/register/register.component';
 import { PostComponent } from './components/post/post.component';
 import { PostsComponent } from './components/posts/posts.component';
+import { PostResolver } from './services/post.resolver';
+import { OrderComponent } from './components/order/order.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { AddpostComponent } from './components/addpost/addpost.component';
+import { canActivateRoleGuard } from './guards/can-activate-role.guard';
 
 const routes: Routes = [
   {
@@ -25,6 +30,26 @@ const routes: Routes = [
     path: 'cart',
     component: CartComponent,
     canActivate: [canActivateCartGuard]
+  },
+  {
+    path: 'cart/add',
+    component: CartComponent,
+    canActivate: [canActivateCartGuard]
+  },
+  {
+    path: 'cart/delete',
+    component: CartComponent,
+    canActivate: [canActivateCartGuard]
+  },
+  {
+    path: 'order',
+    component: OrderComponent,
+    canActivate: [canActivateLogoutGuard]
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent,
+    canActivate: [canActivateLogoutGuard]
   },
   {
     path: 'login',
@@ -50,6 +75,17 @@ const routes: Routes = [
   {
     path: 'posts',
     component: PostsComponent
+  },
+  {
+    path: 'posts/add',
+    component: AddpostComponent,
+    canActivate: [canActivateLogoutGuard]
+  },
+  {
+    path: 'posts/:id',
+    pathMatch: 'full',
+    component: PostComponent,
+    resolve: {post: PostResolver}
   }
 ];
 

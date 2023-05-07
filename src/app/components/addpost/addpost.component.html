@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="form" fxLayout="column" fxLayoutAlign="center center" fxFill>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Заголовок</mat-label>
+                <input matInput type="input" [(ngModel)]="form.title" required>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Теги</mat-label>
+                <input matInput type="input" [(ngModel)]="form.tags" required>
+            </mat-form-field>
+        </div>
+        <div class="ngxEditor__wrapper" *ngIf="editor">
+                    <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                    <ngx-editor
+                      [(ngModel)]="form.text"
+                      [editor]="editor"
+                      [ngModel]="html"
+                      [disabled]="false"
+                      [placeholder]="'Текст...'"
+                    ></ngx-editor>
+        </div>
+        <div fxFlex>
+            <button (click)="post()" mat-raised-button>Загрузить пост</button>
+        </div>
+        
+    
+    </div>
+</div>
+<ng-container *ngIf="post$ | async"></ng-container>

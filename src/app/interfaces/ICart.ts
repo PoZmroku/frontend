@@ -1,7 +1,7 @@
 import { ICartItem } from "./ICartItem";
 
 export interface ICart {
-    cartId: string;
+    _id: string;
     userId: string;
     items: ICartItem[];
     totalPrice: number;
