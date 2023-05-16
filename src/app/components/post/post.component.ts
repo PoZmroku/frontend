@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, Subscription } from 'rxjs';
 import { IPost } from 'src/app/interfaces';
@@ -13,15 +14,15 @@ import { IPost } from 'src/app/interfaces';
         <div class="post">
           <mat-form-field appearance="outline">
             <mat-label>Название статьи</mat-label>
-            <input matInput [ngModel]="post.title" readonly>
+            <div class="ptitle">{{post.title}}</div>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Текст статьи</mat-label>
-            <input matInput [ngModel]="post.text" readonly>
+            <div class="ptext" [innerHTML]="post.text"></div>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Теги</mat-label>
-            <input matInput [ngModel]="post.tags" readonly>
+            <div class="ptags">{{post.tags}}</div>
           </mat-form-field>
         </div>
       </mat-card>
@@ -31,7 +32,7 @@ import { IPost } from 'src/app/interfaces';
   <ng-template #postNotFound>
       <mat-card>
         <div class="post">
-          POST NOT FOUND
+          Новостей нет(
         </div>
       </mat-card>
     </ng-template>
@@ -45,9 +46,10 @@ export class PostComponent {
   post$: Observable<IPost> = this._activatedRoute.data.pipe(map(({post}) => post));
   postSubscription: Subscription;
 
+  
 
   constructor(
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
   ) {}
 
 }

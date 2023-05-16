@@ -15,6 +15,7 @@ import { OrderComponent } from './components/order/order.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { AddpostComponent } from './components/addpost/addpost.component';
 import { canActivateRoleGuard } from './guards/can-activate-role.guard';
+import { AddproductComponent } from './components/addproduct/addproduct.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'store',
     component: StoreComponent
+  },
+  {
+    path: 'products/add',
+    component: AddproductComponent,
+    canActivate: [canActivateLogoutGuard]
   },
   {
     path: 'cart',
@@ -83,6 +89,12 @@ const routes: Routes = [
   },
   {
     path: 'posts/:id',
+    pathMatch: 'full',
+    component: PostComponent,
+    resolve: {post: PostResolver}
+  },
+  {
+    path: 'posts/delete/:id',
     pathMatch: 'full',
     component: PostComponent,
     resolve: {post: PostResolver}

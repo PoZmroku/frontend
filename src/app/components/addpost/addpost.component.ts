@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Editor } from 'ngx-editor';
-import { Observable, switchMap, tap } from 'rxjs';
+import { catchError, Observable, of, switchMap, tap } from 'rxjs';
 import { IPost } from 'src/app/interfaces';
 import { PostService } from 'src/app/services/post.service';
 import { toHTML } from 'ngx-editor';
@@ -19,6 +19,7 @@ export class AddpostComponent implements OnInit, OnDestroy {
 
   editor: Editor | undefined;
   html = '';
+  notification: any;
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -43,7 +44,7 @@ export class AddpostComponent implements OnInit, OnDestroy {
     this.post$ = this._postService.create(this.form as IPost).pipe(tap(() => {
       alert('Пост успешно добавлен.');
       this._router.navigate(['/posts']);
-    }));
+    })).pipe(catchError((e) => this.notification.show(e)));
 
 }
 }

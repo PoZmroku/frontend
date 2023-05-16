@@ -33,6 +33,7 @@ import { OrderComponent } from './components/order/order.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { AddpostComponent } from './components/addpost/addpost.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { AddproductComponent } from './components/addproduct/addproduct.component';
 
 const COMPONENTS = [
   AppComponent,
@@ -53,6 +54,7 @@ const COMPONENTS = [
 @NgModule({
   declarations: [
     ...COMPONENTS,
+    AddproductComponent,
   ],
   imports: [
     BrowserModule,

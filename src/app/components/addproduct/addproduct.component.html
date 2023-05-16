@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="form" fxLayout="column" fxLayoutAlign="center center" fxFill>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Название товара</mat-label>
+                <input matInput type="input" [(ngModel)]="form.name" required>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Стоимость</mat-label>
+                <input matInput type="input" [(ngModel)]="form.price" required>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field appearance="outline">
+                <mat-label>Описание товара</mat-label>
+                <input matInput type="input" [(ngModel)]="form.description" required>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <button (click)="product()" mat-raised-button>Добавить товар</button>
+        </div>
+        
+    
+    </div>
+</div>
+<ng-container *ngIf="product$ | async"></ng-container>

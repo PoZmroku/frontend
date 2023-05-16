@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ICart, ICartItem, IProduct } from 'src/app/interfaces';
 import { ProductService, UserService, UserStateService } from 'src/app/services';
-import { Observable, share } from 'rxjs';
+import { catchError, Observable, share, throwError } from 'rxjs';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
@@ -12,6 +12,7 @@ import { CartStateService } from 'src/app/services/cart-state.service';
   selector: 'app-store',
   styleUrls: ['./store.component.scss'],
   template: `
+  <button class="button" mat-button *ngIf="isLoggedIn$ | async" [routerLink]="['..', 'products', 'add']">Добавить товар</button>
   <div class="container" fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="25px" *ngFor="let product of products$ | async">
     <mat-card class="example-card">
       <mat-card-header>
@@ -35,16 +36,20 @@ export class StoreComponent {
   
   products$: Observable<IProduct[]> = this._productService.getProducts();
 
+  isLoggedIn$ = this._state.isLoggedIn$.pipe(share());
+
   addItem$: Observable<ICart>;
 
 
   constructor(
     private _productService: ProductService,
-    private _cartState: CartStateService
+    private _cartState: CartStateService,
+    private _state: UserStateService
   ) {}
 
   ngOnInit() {
   }
+
 
   addItem(product: IProduct): void {
     this.addItem$ = this._cartState.addItem({

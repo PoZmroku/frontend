@@ -6,7 +6,6 @@ export const canActivateCartGuard = (route: ActivatedRouteSnapshot, state: Route
     const userEntry = localStorage.getItem('user');
     const userService = inject(UserService);
 
-    //TODO: check if user's token is alive & valid
 
     console.log(userService);
 

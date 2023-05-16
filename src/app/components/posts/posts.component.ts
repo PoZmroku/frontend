@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, share } from 'rxjs';
+import { IPost } from 'src/app/interfaces';
 import { IPosts } from 'src/app/interfaces/IPosts';
 import { UserStateService } from 'src/app/services';
 import { PostService } from 'src/app/services/post.service';
@@ -30,10 +31,12 @@ export class PostsComponent {
   isLoggedIn$ = this._state.isLoggedIn$.pipe(share());
 
   posts$: Observable<IPosts[]> = this._postService.getAll();
+  delete$: Observable<void>;
 
   constructor(
     private _postService: PostService,
     private _state: UserStateService
   ) {}
+
 
 }

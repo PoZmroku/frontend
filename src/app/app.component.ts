@@ -15,7 +15,7 @@ import { share } from 'rxjs';
     <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center" [routerLink]="'/posts'">Новости</button>
     <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center" *ngIf="isLoggedIn$ | async" [routerLink]="['/orders']">Мои заказы</button>
     <button class="butone" mat-button fxLayout="column" fxLayoutAlign="center center" [routerLink]="['/store']">Каталог</button>
-  </mat-drawer>
+</mat-drawer>
   
   
   <mat-toolbar>

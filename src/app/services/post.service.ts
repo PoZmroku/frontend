@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
     private _apiUrl = `http://localhost:4444`;
+  addpost$: any;
 
     constructor(private _http: HttpClient) {
     }
@@ -22,7 +23,7 @@ export class PostService {
     }
 
     remove(post: IPost): Observable<void> {
-        return this._http.delete<void>(`${this._apiUrl}/posts/${post._id}`);
+        return this._http.delete<void>(`${this._apiUrl}/posts/delete/${post._id}`);
     }
 
     getOne(postId: string): Observable<IPost> {
